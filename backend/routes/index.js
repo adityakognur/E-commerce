@@ -31,6 +31,6 @@ router.post("/update-user",authToken,updateUser)
 router.post("/upload-product",authToken,uploadProductController)
 router.get("/get-product",getProductController)
 router.post("/update-product",authToken,updateProductController)
-
+router.get("/get-categoryProduct",getCategoryProduct)
 
 module.exports = router

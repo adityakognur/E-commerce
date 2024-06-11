@@ -74,8 +74,8 @@ const AdminEditProduct = ({
   const handleSubmit = async(e) =>{
     e.preventDefault()
     
-    const response = await fetch(SummaryApi.updataProduct.url,{
-      method : SummaryApi.updataProduct.method,
+    const response = await fetch(SummaryApi.updateProduct.url,{
+      method : SummaryApi.updateProduct.method,
       credentials : 'include',
       headers : {
         "content-type" : "application/json"

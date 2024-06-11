@@ -11,6 +11,7 @@ import {toast} from 'react-toastify'
 
 const UploadProduct = ({
     onClose
+
 }) => {
     const [data,setData] =useState({
         productName:"",
@@ -36,7 +37,7 @@ const UploadProduct = ({
       
   }
 
-  const handleUploadProduct =async (e)=>{
+  const handleUploadProduct =async(e)=>{
     const file=e.target.files[0]
     
       const uploadImageCloudinary = await uploadImage(file)
