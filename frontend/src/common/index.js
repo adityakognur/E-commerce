@@ -1,4 +1,5 @@
 
+
 const backendDomain = "http://localhost:8080"
 const SummaryApi = {
     signUP:{
@@ -44,6 +45,10 @@ const SummaryApi = {
     },
     categoryWiseProduct : {
         url : `${backendDomain}/api/category-Product`,
+        method : 'post'
+    },
+    productDetails : {
+        url : `${backendDomain}/api/product-details`,
         method : 'post'
     },
 

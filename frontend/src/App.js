@@ -41,7 +41,7 @@ const dispatch=useDispatch()
   <ToastContainer />
 
   <Header/>
-  <main className='min-h-[calc(100vh-100px)]'>
+  <main className='min-h-[calc(100vh-100px)] pt-6'>
   <Outlet/>
   </main>
   <Footer/>
