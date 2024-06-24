@@ -4,15 +4,24 @@ import displayINRCurrency from '../helpers/displayCurrency'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
 import { Link } from 'react-router-dom';
 import addToCart from '../helpers/addToCart'
-
+import Context from '../context';
 
 const VerticalCardProduct = ({category,heading}) => {
     const [data,setData] = useState([])
     const [loading,setLoading] = useState(false)
     const loadingList =new Array(13).fill(null)
 
-    const [scroll,setScraoll]=useState(0)
+    const [scroll,setScroll]=useState(0)
     const scrollElement=useRef()
+
+    const { fetchUserAddToCart }=useContext(Context)
+
+
+
+    const handleAddToCart = async(e,id)=>{
+       await addToCart(e,id)
+       fetchUserAddToCart()
+    } 
 
     const fetchData = async() =>{
       setLoading(true)
@@ -32,10 +41,7 @@ fetchData()
      const scrollLeft=()=>{
       scrollElement.current.scrollLeft -=300
      }
-     const handleAddToCart = async(e,id)=>{
-      await addToCart(e,id)
-      
-   }
+     
 
   return (
     <div className='container mx-auto px-4 my-6 relative'>
