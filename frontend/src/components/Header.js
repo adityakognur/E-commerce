@@ -3,20 +3,26 @@ import Logo from './Logo'
 import { GrSearch } from "react-icons/gr";
 import { FaUserCircle } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';
 import {setUserDetails} from '../store/userSlice';
 import ROLE from '../common/role';
 import Context from '../context';
+
+
 const Header = () => {
     const user=useSelector(state => state?.user?.user)
     const dispatch=useDispatch()
     const [menuDisplay,setMenuDisplay] =useState(false)
     const context = useContext(Context)
     const navigate = useNavigate()
+    const searchInput=useLocation()
+    const [search,setSearch]=useState(searchInput?.search?.split("=")[1])
    
+console.log("searchInput",searchInput?.search.split("=")[1])
+
 
     const handleLogout =async() =>{
        const fetchData=await fetch(SummaryApi.logout_user.url,{
@@ -34,7 +40,18 @@ const Header = () => {
         toast.error(data.message)
      }
     }
-    console.log("header",context)
+      const handleSearch=(e)=>{
+           const {value}=e.target
+           setSearch(value)
+          if(value){
+            navigate(`/search?q=${value}`)
+          }else{
+            navigate("/search")
+          }
+
+
+
+      }
     
   return (
     <header className='h-16 shadow-md bg-white fixed w-full z-30'>
@@ -46,7 +63,7 @@ const Header = () => {
             </div>
 
             <div className='hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full focus-within:shadow pl-2'>
-                <input type='text' placeholder='search products here...' className='w-full outline-none'/>
+                <input type='text' placeholder='search products here...' className='w-full outline-none' onChange={handleSearch} value={search}/>
                 <div className='text-lg min-w-[50px] h-8 bg-red-600 flex items-center justify-center rounded-r-full text-white'>
                 <GrSearch />
                 </div>
